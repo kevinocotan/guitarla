@@ -1,13 +1,19 @@
 import Guitar from "./components/Guitar";
 import Header from "./components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  //State
+  const [auth, setAuth] = useState(false);
 
-  const [auth, setAuth] = useState([])
+  useEffect(() => {
+    if (auth) {
+      console.log("Autenticado");
+    }
+  }, [auth]);
 
-  console.log(auth)
+  setTimeout(() => {
+    setAuth(true);
+  }, 3000);
 
   return (
     <>
