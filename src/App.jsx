@@ -6,8 +6,6 @@ import { db } from "./data/db";
 function App() {
   const [data, setData] = useState(db);
 
-  console.log(data);
-
   return (
     <>
       <Header />
@@ -16,12 +14,14 @@ function App() {
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-          {data.map(() => ( 
-            <Guitar 
-            price = {100}
-            auth = {true}
-            />
+
+          {data.map((guitar) => ( 
+              <Guitar 
+              key={guitar.id}
+                guitar = {guitar}
+              />
            ))}
+
         </div>
       </main>
 
