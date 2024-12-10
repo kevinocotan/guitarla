@@ -4,17 +4,21 @@ import Header from "./components/Header";
 import { db } from "./data/db";
 
 function App() {
-
   const [data, setData] = useState(db);
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
 
   function addToCart(item) {
+    const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
 
-    const itemExists = cart.findIndex(guitar => guitar.id === item.id) 
+    if (itemExists >= 0) {
+      // Ya existe
+      console.log("Ya existe.");
+    } else {
+      item.quantity = 1
+      setCart((prevCart) => [...prevCart, item]);
+    }
 
-    console.log(itemExists);
-    
-    setCart(prevCart => [...prevCart, item])    
+    setCart([...cart, item]);
   }
 
   return (
@@ -26,8 +30,8 @@ function App() {
 
         <div className="row mt-5">
           {data.map((guitar) => (
-            <Guitar 
-              key={guitar.id} 
+            <Guitar
+              key={guitar.id}
               guitar={guitar}
               setCart={setCart}
               addToCart={addToCart}
