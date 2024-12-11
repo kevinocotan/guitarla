@@ -35,7 +35,7 @@ export default function Header({ cart }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {cart.map((guitar) => (
+                      {cart.map(guitar => (
                         <tr key={guitar.id}>
                           <td>
                             <img
