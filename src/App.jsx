@@ -7,14 +7,15 @@ function App() {
   const [data, setData] = useState(db);
   const [cart, setCart] = useState([]);
 
-  const MAX_ITEMS = 15
-  const MIN_ITEMS = 1
+  const MAX_ITEMS = 15;
+  const MIN_ITEMS = 1;
 
   function addToCart(item) {
     const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
 
     if (itemExists >= 0) {
       // Ya existe
+      if (cart[itemExists].quantity >= MAX_ITEMS) return;
       const updateCart = [...cart];
       updateCart[itemExists].quantity++;
       setCart(updateCart);
@@ -28,55 +29,48 @@ function App() {
     setCart((prevCart) => prevCart.filter((guitar) => guitar.id !== id));
   }
 
-  function increaseQuantity(id) {
-    const updateCart = cart.map(item => {
-      if (item.id === id && item.quantity < MAX_ITEMS) {
-        return {
-          ...item, 
-          quantity: item.quantity + 1
-        }
-      }
-      return item
-    })
-    setCart(updateCart)
-  }
-
   function removeFromCart(id) {
     setCart((prevCart) => prevCart.filter((guitar) => guitar.id !== id));
   }
 
   function decreaseQuantity(id) {
-    const updateCart = cart.map(item => {
+    const updateCart = cart.map((item) => {
       if (item.id === id && item.quantity > MIN_ITEMS) {
         return {
-          ...item, 
-          quantity: item.quantity - 1
-        }
+          ...item,
+          quantity: item.quantity - 1,
+        };
       }
-      return item
-    })
-    setCart(updateCart)
+      return item;
+    });
+    setCart(updateCart);
   }
 
   function increaseQuantity(id) {
-    const updateCart = cart.map(item => {
+    const updateCart = cart.map((item) => {
       if (item.id === id && item.quantity < MAX_ITEMS) {
         return {
-          ...item, 
-          quantity: item.quantity + 1
-        }
+          ...item,
+          quantity: item.quantity + 1,
+        };
       }
-      return item
-    })
-    setCart(updateCart)
+      return item;
+    });
+    setCart(updateCart);
+  }
+
+  function clearCart() {
+    setCart([]);
   }
 
   return (
     <>
-      <Header cart={cart} 
-      removeFromCart={removeFromCart}
-      decreaseQuantity={decreaseQuantity}
-      increaseQuantity={increaseQuantity}
+      <Header
+        cart={cart}
+        removeFromCart={removeFromCart}
+        decreaseQuantity={decreaseQuantity}
+        increaseQuantity={increaseQuantity}
+        clearCart={clearCart}
       />
 
       <main className="container-xl mt-5">
