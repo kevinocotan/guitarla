@@ -6,7 +6,10 @@ import { useCart } from "./hooks/useCart";
 
 function App() {
 
-  useCart()
+  const {auth, carrito} = useCart()
+
+  console.log(carrito);
+  
 
   const initialCart = () => {
     const localStorageCart = localStorage.getItem('cart')

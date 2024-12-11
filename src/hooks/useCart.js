@@ -1,4 +1,10 @@
 export const useCart = () => {
-    console.log('Desde use cart');
-    
+
+    const auth = true
+    const carrito = []
+
+    return {
+        auth,
+        carrito
+    }
 }
