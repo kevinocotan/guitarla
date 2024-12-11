@@ -10,7 +10,7 @@ function App() {
     return localStorageCart ? JSON.parse(localStorageCart) : [] 
   }
 
-  const [data, setData] = useState(db);
+  const [data] = useState(db);
   const [cart, setCart] = useState(initialCart);
 
   const MAX_ITEMS = 15;
@@ -33,10 +33,6 @@ function App() {
       item.quantity = 1;
       setCart([...cart, item]);
     }
-  }
-
-  function removeFromCart(id) {
-    setCart((prevCart) => prevCart.filter((guitar) => guitar.id !== id));
   }
 
   function removeFromCart(id) {

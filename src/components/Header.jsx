@@ -1,11 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useMemo } from "react";
 
-export default function Header({
-  cart,
-  removeFromCart,
-  decreaseQuantity,
-  increaseQuantity,
-  clearCart,
+export default function Header({ cart, removeFromCart, decreaseQuantity, increaseQuantity, clearCart,
 }) {
   // State Derivado
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
@@ -23,7 +19,7 @@ export default function Header({
             <a href="index.html">
               <img
                 className="img-fluid"
-                src="./public/img/logo.svg"
+                src="/img/logo.svg"
                 alt="imagen logo"
               />
             </a>
@@ -32,7 +28,7 @@ export default function Header({
             <div className="carrito">
               <img
                 className="img-fluid"
-                src="./public/img/carrito.png"
+                src="/img/carrito.png"
                 alt="imagen carrito"
               />
 
